@@ -1,0 +1,478 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+:root {
+    font-size: 10px;
+
+    --primary-color: #730039;
+    --primary-color-m-light: hsla(330, 100%, 23%, 0.55);
+    --primary-color-m-dark: hsla(330, 100%, 23%, 0.85);
+    
+    --secondary-color: #ffc513;
+    --secondary-color-m-light: hsla(45, 100%, 54%, 0.55);
+    --secondary-color-m-dark: hsla(45, 100%, 54%, 0.85);
+
+    --tercery-color: #ff724c;
+    --tercery-color-m-light: hsla(13, 100%, 65%, 0.55);
+    --tercery-color-m-dark: hsla(13, 100%, 65%, 0.85);
+
+
+    --quaternary-color: #f6eedf;
+    --quaternary-color-m-light: hsla(39, 56%, 92%, 0.55);
+    --quaternary-color-m-dark: hsla(39, 56%, 92%, 0.85);
+
+    --transition-duration: 0.3s;
+
+    --font-size-title: calc(2rem + 2vw);
+
+    --padding-section: 8vh 3vw;
+
+}
+
+a:link,
+a:visited {
+    color: var(--quaternary-color);
+    text-decoration: none;
+}
+
+p {
+    color: #fff;
+    font-weight: 300;
+    font-size: calc(1rem + 1vw);
+}
+
+li {
+    list-style: none;
+    margin-bottom: 4rem;
+}
+
+i {
+    font-size: var(--font-size-title);
+    color: var(--secondary-color);
+}
+
+body {
+    font-family: 'Titillium Web', sans-serif;
+    line-height: 1.7;
+    background-color: var(--quaternary-color);
+    color: #fff;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: [container-start] 1fr [center-start] repeat(10, [col-start] minmax(min-content, 11rem)[col-end]) [center-end] 1fr [container-end];
+    grid-template-rows: 100vh repeat(8, auto);
+    font-size: 2rem;
+}  
+
+
+/* 
+section {
+    height: 400px;
+} */
+
+/* HEADER SECTION */
+
+header {
+    background-color: var(--primary-color-m-dark);
+    background-image: linear-gradient(var(--primary-color-m-light), var(--primary-color-m-light)), url(../img/hero.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    grid-column: container-start / container-end;
+}
+
+nav {
+    position: fixed;
+    top: 0; 
+    left: 0;
+    z-index: 2;
+    width: 0;
+}
+
+.nav-input {
+    position: absolute; 
+    top: 3rem;
+    left: 3rem;
+    height: 5rem;
+    width: 5rem;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 3;
+}
+
+.nav-hamburger {
+    position: absolute;
+    top: 3rem;
+    left: 3rem;
+    height: 5rem;
+    width: 5rem;
+    background-color: var(--secondary-color);
+    padding: 1rem;
+    z-index: 2;
+    display: grid;
+    place-items: center;
+    transition: all .5s ease-in-out;
+    animation: main-nav 2s;
+}
+
+
+
+.nav-hamburger > div {
+    position: relative;
+    height: .3rem;
+    width: 100%;
+    background-color: #fff;
+    transition: all .5s ease-in-out;
+    animation: cross-animation-2;
+    animation-duration: 2s;
+}
+
+.nav-hamburger > div::before,
+.nav-hamburger > div::after {
+    content: "";
+    position: absolute;
+    top: -1rem;
+    height: .3rem;
+    width: 60%;
+    background-color: #fff;
+    transition: all .2s ease-in-out;
+}
+
+.nav-hamburger > div::before {
+    left: 0;
+}
+
+.nav-hamburger > div::after {
+    top: 1rem;
+    right: 0;
+}
+
+
+nav ul {
+    background-color: var(--secondary-color-m-light);
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transform: scaleX(0);
+    transition: all .3s ease-in-out;
+   
+}
+
+nav ul > li {
+    min-width: 130px;
+    text-align: center;
+    position: relative;
+    padding: .7rem 1.2rem;
+    opacity: 0;
+    z-index: 5;
+}
+
+nav ul > li:nth-child(1) {
+    transition: all 1s ease-in-out .2s;
+}
+nav ul > li:nth-child(2) {
+    transition: all 1s ease-in-out .4s;
+}
+nav ul > li:nth-child(3) {
+    transition: all 1s ease-in-out .6s;
+}
+nav ul > li:nth-child(4) {
+    transition: all 1s ease-in-out .8s;
+}
+
+nav ul > li::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: var(--primary-color);
+    top: 0;
+    left: 0;
+    transform: scaleX(0);
+    transition: transform var(--transition-duration) ease-in-out;
+    z-index: -1;
+}
+
+nav ul > li:hover::before {
+    transform: scaleX(1)
+}
+
+nav ul > li a:link,
+nav ul > li a:visited {
+    font-size: 2.5rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+
+.nav-input:checked:hover + .nav-hamburger > div {
+    transform: rotate(45deg);
+}
+
+.nav-input:checked + .nav-hamburger > div {
+    transform: rotate(405deg);
+    animation: cross-animation-1;
+    animation-duration: .5s;
+    
+}
+
+.nav-input:checked + .nav-hamburger > div::before {
+    opacity: 0;
+}
+.nav-input:checked + .nav-hamburger > div::after {
+    left: 0;
+    top:0;
+    transform: rotate(450deg) ;
+    width: 100%;
+}
+
+.nav-input:checked ~ ul{
+    transform: scaleX(1);
+    
+}
+
+.nav-input:checked ~ ul li {
+    opacity: 1;
+}
+
+/* HEADER-LOGO-CONTENT */
+
+.header-logo-content {
+    display: grid;
+    grid-template-columns: 1fr minmax(30rem, 1fr) 1fr;
+    grid-template-rows: min-content;
+    height: 90%;
+    justify-items: center;
+}
+
+.logo {
+    font-size: 2rem;
+    grid-column: 2 / 3;
+}
+
+.logo span {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 3rem;
+    color:var(--tercery-color-m-dark);
+    
+} 
+
+.header-logo-content--content {
+    grid-column: 1 / -1;
+    align-self: center;
+}
+
+.title {
+    font-size: calc(4rem + 4vw);
+    font-weight: 400;
+    text-transform: uppercase;
+   padding: 0 2rem 0 var(--font-size-title);
+    
+}
+
+.welcome-para {
+    font-size: calc(1rem + 2vw);
+    font-weight: 500;
+    padding: 2vh 2rem 6vh var(--font-size-title);
+}
+
+.header-btn {
+    display: inline-block;
+    font-size: calc(1.5rem + .5vw);
+    padding: .5em .75em;
+    border: 2px solid var(--tercery-color);
+    border-radius: 5%;
+    margin-left: var(--font-size-title);
+    position: relative;   
+    z-index: 1; 
+}
+
+.header-btn::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: calc(100% + 4px);
+    background-color: var(--tercery-color);
+    left: 0px;
+    top: -2px;
+    border-radius: 5%;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .5s ease-in-out;
+    z-index: -1;
+}
+
+.header-btn:hover::before {
+    transform: scaleX(1)
+   
+}
+
+
+
+
+
+/* Booking Section */
+
+/* Typography */
+
+.booking-content p, .booking-data p {
+    color: #000;
+}
+
+.booking-content {
+    grid-column: 2 / 8;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: var(--padding-section);
+}
+
+.booking-content h2 {
+    color: #000;
+    font-weight: 400;
+    font-size: var(--font-size-title);
+    grid-column: 1 / -1;
+    position: relative;
+}
+
+.booking-content h2::after {
+    content: "";
+    position: absolute;
+    left: 15%;
+    bottom: 30%;
+    width: 30%;
+    height: 2px;
+    background-color: var(--secondary-color);
+}
+
+.booking-content p {
+    grid-column: 1 / -1;
+}
+
+.booking-content_icon-wrapper {
+    display: grid;
+    grid-template-columns: minmax(min-content, 10rem) 1fr;
+    align-items: center;
+    justify-items: left;
+}
+
+.booking-content_icon-wrapper p{
+    grid-column: 2 / 3;
+}
+
+
+
+.booking-data {
+    grid-column: 8 / 12;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: var(--padding-section);
+
+}
+
+.booking-data h3 {
+    color: #000;
+    font-size: 2.5rem;
+}
+
+
+/* Villas Section */
+
+.villas {
+    grid-column: 1 / 13;
+    background-color: var(--secondary-color);
+}
+
+/* Motto Section */
+
+.motto {
+    grid-column: 1 / 13;
+    background-color: var(--primary-color);
+}
+
+
+/* Event Section */
+
+.event-content {
+    grid-column: 1 / 11;
+    background-color: var(--secondary-color);
+}
+
+.event-text {
+    grid-column: 11 / 12;
+    background-color: var(--tercery-color);
+}
+
+/* Gallery Section */
+
+.gallery-text {
+    grid-column: 2 / 3;
+    background-color: blue;
+}
+
+.gallery-carousele {
+    grid-column: 3 / 13;
+    background-color: violet;
+}
+
+/* Features Section */
+
+.features-content {
+    grid-column: 1 / 11;
+    background-color: var(--secondary-color);
+}
+
+.features-text {
+    grid-column: 11 / 12;
+    background-color: var(--tercery-color);
+}
+
+/* testimonials Section */
+.testimonials {
+    grid-column: 2 / -2;
+    background-color: yellowgreen;
+}
+
+footer {
+    grid-column: 1 / -1;
+    background-color: var(--primary-color);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
