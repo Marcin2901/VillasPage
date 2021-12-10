@@ -1,0 +1,84 @@
+@media screen and (max-width: 1000px) {
+
+    .villas {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .villa-card h2 {
+        font-size: 2.5rem;
+        text-transform: uppercase;
+        font-weight: 400;
+        margin-bottom: 3rem;
+    }
+    
+    .villa-card p {
+        font-size: 1.5rem;
+        color: #fff;
+        font-weight: 400;
+        margin-bottom: 3rem;
+    }
+
+    .villa-card a {
+        font-size: 1.2rem;
+    }
+   
+}
+
+
+@media screen and (max-width: 800px) {
+
+    :root {
+        font-size: 12px;
+    }
+
+    .booking-content {
+        grid-column: center-start / center-end;
+    }
+
+    .booking-content h2 {
+        text-align: center;
+    }
+
+    .booking-content h2::after {
+        left: 30%;
+    }
+
+    .booking-data {
+        grid-column: center-start / center-end;
+        grid-template-rows: repeat(2, max-content);
+        margin: 0 auto;
+
+    }
+
+    .motto h2 {
+        font-size: 3rem;
+    }
+    .event-content,
+    .features-content {
+        grid-column: center-start / center-end;
+        grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+    }
+    .gallery-carousele {
+        grid-column: center-start / center-end;
+    }
+
+    .event-text,
+    .gallery-text,
+    .features-text {
+        display: none;
+    }
+
+    .event-content-card {
+        padding: 2rem;
+    }
+
+    footer {
+        grid-template-columns: 1fr;
+        row-gap: 4rem;  
+    }  
+}
+
+@media screen and (max-width: 600px) {
+    .villas {
+        grid-template-columns: 1fr;
+    }
+}
